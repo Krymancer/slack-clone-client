@@ -3,15 +3,15 @@ import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import 'semantic-ui-css/semantic.min.css'
 
-const allUsersQuery = gql`
-{
-	allUsers{
-    id,
-    email
-  }
-}`;
-
 function Home() {
+
+    const allUsersQuery = gql`
+        {
+            allUsers{
+                id,
+                email
+        }
+    }`;
 
     const { loading, error, data } = useQuery(allUsersQuery);
 
