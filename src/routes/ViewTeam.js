@@ -1,28 +1,25 @@
 import React from 'react';
 
-import Teams from '../components/Teams';
-import Channels from '../components/Channels';
+
 import Header from '../components/Header';
 import Messages from '../components/Messages';
-import Input from '../components/Input';
+import SendMessage from '../components/SendMessage';
 import AppLayout from '../components/AppLayout';
+import Sidebar from '../containers/Sidebar';
 
+function ViewTeam({ match: { params } }) {
 
-function ViewTeam() {
     return (
         <AppLayout>
-            <Teams>Teams</Teams>
-            <Channels>Channels</Channels>
-            <Header>Header</Header>
+            <Sidebar currentTeamId={ params.teamId } />
+            <Header channelName="general" />
             <Messages>
-                <ul class="message-list">
-                    <li></li>
-                    <li></li>
+                <ul className="message-list">
+                    <li />
+                    <li />
                 </ul>
             </Messages>
-            <Input>
-                <input type="text" placeholder="Enter text" />
-            </Input>
+            <SendMessage channelName="general" />
         </AppLayout>
     );
 }

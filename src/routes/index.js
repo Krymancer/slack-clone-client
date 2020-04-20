@@ -49,7 +49,7 @@ function App() {
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <PrivateRoute path="/create-team" exact component={CreateTeam} />
-        <Route path="/view-team" exact component={ViewTeam} />
+        <PrivateRoute path="/view-team/:teamId?/:channelId?" exact component={ViewTeam} />
       </Switch>
     </BrowserRouter>
   );

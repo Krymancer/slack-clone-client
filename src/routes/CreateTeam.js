@@ -13,6 +13,9 @@ function CreateTeam({ history }) {
         mutation($name: String!) {
             createTeam(name: $name) {
                 ok
+                team {
+                    id
+                }
                 errors {
                     path
                     message
@@ -29,18 +32,17 @@ function CreateTeam({ history }) {
         try {
             response = await createTeam({ variables: { name, } });
         } catch (error) {
+            console.log(error);
             history.push('/login');
             return;
         }
+        
+        const { ok, errors, team } = response.data.createTeam;
 
-
-        console.log(response);
-
-
-        const { ok, errors } = response.data.createTeam;
+        console.log(response.data.createTeam);
 
         if (ok) {
-            history.push('/');
+            history.push(`/view-team/${team.id}`);
         } else {
             let err = {};
 
@@ -48,8 +50,6 @@ function CreateTeam({ history }) {
                 errors.forEach(e => {
                     err[e.path] = e.message;
                 });
-            } else {
-                err['token'] = 'You must be loged to perform this action';
             }
 
             setInputErrors(err);
